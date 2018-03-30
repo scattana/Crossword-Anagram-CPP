@@ -1,0 +1,52 @@
+report.txt
+Report for CSE-20311 Lab #9: Anagram Crossword Puzzle
+Due: Tuesday, November 21, 2017
+Seth Cattanach
+
+
+1.   The user can interact with the program in several ways. By simply running the 
+executable, the user enters an "interactive" mode in which he/she can enter words 
+(max 20 words, 15 letters each). Alternatively, the user can run the executable and 
+pass an input file as an argument; in this case, the crossword puzzle is generated 
+based on the words in the text file. Once the user has finished inputting words 
+(through either method), the program indicates if there were any words that were 
+unable to be placed, generates a solution puzzle, generates a "solvable" (hidden) 
+puzzle, and lastly generates a list of clues (anagrams of the placed words).
+
+2.    My program uses a "board" class to accomplish most of the overall tasks; the 
+class has get and set methods for its private data (which include an array of strings 
+to hold directions of placed words, a 2D char array to hold the actual board 
+positions (i.e. letters and spaces), and a 2D int array to hold row/column data 
+corresponding to where a word is placed on the board. The private data also includes 
+an int variable "place" used to keep track of which set of row/col ints correspond to 
+which word and direction. The "heavy lifting" (i.e. finding and placing the crossword 
+puzzle given a list of words) is done by the "placeList" method, which in turn uses 
+the "placeNextHor" and "placeNextVer" and "findMatch" methods to find a place to 
+place words on the board. These functions are optimized a little bit further than was 
+necessary in the project description; this algorithm skips words that cannot be 
+placed but continues to the next word in the list until the end of the list is 
+reached, rather than terminating as soon as one word cannot be placed. Lastly, the 
+program uses two print functions (printBoard and printHidden) to print the solution 
+board and the solvable crossword puzzle, respectively. The main function has several 
+functions as well, but these are used to manage the vector<string> of words to be 
+placed; one function capitalizes all letters, one function checks if a word contains 
+valid letters, etc. The "main" function has essentially three stages: the first stage 
+is to input the words (either from a text file or user input), the second stage is to 
+call relevant methods for a created "Board" object, and the third stage is the output 
+to a text file (using ofstream), only applicable when there are three arguments 
+passed to the command line.
+
+3.   The program checks for many test cases throughout its execution and responds 
+appropriately. The program checks that all strings entered are 15 characters or less 
+and that each character is a valid uppercase or lowercase letter. The program doesn't 
+allow you to add more than 20 words (from a text file or from user input). I manually 
+checked 5 different text files to verify that my algorithm correctly places the words 
+from the list and prints the scrambled word correctly along with the 
+row/column/direction labels that correspond to each placed word. I checked that each 
+placed word has a matching letter at every point of intersection with another word, 
+and that the algorithm doesn't "overlap" words beyond a single intersection point. 
+Lastly, I checked that the command line argument cases work properly; I tested 5 
+different inputs from text file (3 of which I had my friends create a list of words 
+for to randomly test my program), and tested that the results from the program 
+(solution crossword, solvable crossword, and clues) are all outputted and formatted 
+correctly to a text file if three arguments are provided at the command line.

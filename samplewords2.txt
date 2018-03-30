@@ -1,0 +1,10 @@
+notebook
+short
+notredame
+engineering
+communications
+semester
+final
+exams
+code
+.
